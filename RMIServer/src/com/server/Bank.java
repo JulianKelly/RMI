@@ -3,6 +3,8 @@ package com.server;
 import java.rmi.Naming;
 import java.rmi.RMISecurityManager;
 import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.Date;
 import java.util.List;
@@ -52,9 +54,11 @@ public static void main(String args[]) throws Exception {
 
 		// Create an instance of the local object 
 		Bank BankServer = new Bank(); 
+		Registry registry = LocateRegistry.createRegistry(1099);
+		registry.bind("Test RMI", BankServer);
 		System.out.println("Instance of Bankserver created"); 
 	
-		Naming.rebind("Function", BankServer); 
+		Naming.rebind("BankServer", BankServer); 
 		System.out.println("Name rebind completed"); 
 		System.out.println("Server ready for requests!"); 
 	} 
