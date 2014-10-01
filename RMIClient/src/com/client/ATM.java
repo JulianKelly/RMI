@@ -8,7 +8,7 @@ public class ATM {
 		BankServer banks = (BankServer)Naming.lookup("//localhost/BankServer"); 
 				try 
 					{ 
-					
+						
 					} 
 					catch (Exception e) {} 
 					// get user’s input, and perform the operations
