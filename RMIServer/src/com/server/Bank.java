@@ -47,7 +47,7 @@ public static void main(String args[]) throws Exception {
 	try 
 	{  
 		// First reset our Security manager 
-		System.setSecurityManager(new RMISecurityManager()); 
+		System.setSecurityManager(new RMISecurityManager()); //secure
 		System.out.println("Security manager set"); 
 
 		// Create an instance of the local object 
