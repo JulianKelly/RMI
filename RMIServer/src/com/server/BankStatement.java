@@ -7,11 +7,11 @@ import com.interf.Statement;
 
 public class BankStatement implements Statement {
 
+	private Account account;
 	private List<Transaction> transactions; // users accounts
 
 	public int getAccountnum() {
-		// TODO Auto-generated method stub
-		return 0;
+		return account.getAccnum();
 	}
 
 	public Date getStartDate() {
@@ -26,7 +26,7 @@ public class BankStatement implements Statement {
 
 	public String getAccoutName() {
 		// TODO Auto-generated method stub
-		return null;
+		return account.getName();
 	}
 
 	public List<Transaction> getTransations() {
