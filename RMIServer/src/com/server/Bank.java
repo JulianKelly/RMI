@@ -10,7 +10,12 @@ import java.util.List;
 import com.interf.BankInterface;
 import com.interf.Statement;
 
+@SuppressWarnings("deprecation")
 public class Bank extends UnicastRemoteObject implements BankInterface {
+/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 private List<Account> accounts; // users accounts
 public Bank() throws RemoteException
 {
