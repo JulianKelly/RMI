@@ -1,21 +1,32 @@
 package com.server;
 
-public class Account {
+public class Account 
+{
 	private int accnum;
 	private int balance;
 	private String name;
 	
-	public int getAccnum(){
-	return accnum;
+	public Account(int AccountN, int bal, String Nme)
+	{
+		accnum = AccountN;
+		balance = bal;
+		name = Nme;
+	}
+	public int getAccnum()
+	{
+		return accnum;
 	}
 	
-	public int getBalance(){
+	public int getBalance()
+	{
 		return balance;
 	}
-	public void setBalance(int i){
+	public void setBalance(int i)
+	{
 		balance+=i;
 	}
-	public String getName(){
+	public String getName()
+	{
 		return name;
 	}
 
