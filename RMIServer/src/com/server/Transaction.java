@@ -7,19 +7,26 @@ public class Transaction
 	private Date DateOfTransaction;
 	private int balance;
 	private String TransType;
+	private int accnum;
 	
-	public void SetTransType(String Trans)
+	public Transaction(int accN, Date TDate, int TBalance, String TType)
 	{
-		TransType = Trans;
+		accnum = accN;
+		DateOfTransaction = TDate;
+		balance = TBalance;
+		TransType = TType;
 	}
+
 	public String getTransType()
 	{
 		return TransType;
 	}
-	
-	public void setDate()
+	public Date getDate()
 	{
-		Date currentDate = new Date();
-		DateOfTransaction = currentDate;
+		return DateOfTransaction;
+	}
+	public int returnBalance()
+	{
+		return balance;
 	}
 }
