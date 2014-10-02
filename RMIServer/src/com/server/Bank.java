@@ -56,12 +56,12 @@ public static void main(String args[]) throws Exception {
 		System.out.println("Security manager set"); 
 
 		// Create an instance of the local object 
-		BankInterface BankServer = new Bank(); 
+		BankInterface bankServer = new Bank(); 
 		Registry registry = LocateRegistry.createRegistry(1099);
-		registry.bind("Test RMI", BankServer);
+		registry.bind("Test RMI", bankServer);
 		System.out.println("Instance of Bankserver created"); 
 	
-		Naming.rebind("BankServer", BankServer); 
+		Naming.rebind("BankServer", bankServer); 
 		System.out.println("Name rebind completed"); 
 		System.out.println("Server ready for requests!"); 
 	} 
