@@ -6,9 +6,12 @@ import java.util.List;
 
 public class StatementImpl implements Statement {
 
-	private Account account;
-	private List<Transaction> transactions; // users accounts
-
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private Account account;// users accounts
+	private List<Transaction> transactions;
 	public int getAccountnum() {
 		return account.getAccnum();
 	}
@@ -29,6 +32,7 @@ public class StatementImpl implements Statement {
 	}
 
 	public List<Transaction> getTransations() {
+		transactions = Bank.getTransactions();
 		return transactions;
 	}
 

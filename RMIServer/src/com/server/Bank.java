@@ -17,7 +17,7 @@ public class Bank extends UnicastRemoteObject implements BankInterface {
 	 */
 private static final long serialVersionUID = 1L;
 private List<Account> accounts;// users accounts
-private List<Transaction> transactions;
+private static List<Transaction> transactions;
 public Bank() throws RemoteException
 {
 	super(); 
@@ -27,7 +27,7 @@ public void deposit(int account, int amount) throws RemoteException {
 		if(accounts.get(i).getAccnum()==account){
 		   accounts.get(i).setBalance(amount);	
 		   Date current  = new Date();
-		   transactions.add(new Transaction(accounts.get(i).getAccnum(),current, accounts.get(i).getBalance(),"Deposit"));
+		   getTransactions().add(new Transaction(accounts.get(i).getAccnum(),current, accounts.get(i).getBalance(),"Deposit"));
 		}
 	}
 }
@@ -36,7 +36,7 @@ public void withdraw(int account, int amount) throws RemoteException {
 		if(accounts.get(i).getAccnum()==account){
 		   accounts.get(i).setBalance(amount*-1);
 		   Date current  = new Date();
-		   transactions.add(new Transaction(accounts.get(i).getAccnum(),current, accounts.get(i).getBalance(),"Withdrawal"));
+		   getTransactions().add(new Transaction(accounts.get(i).getAccnum(),current, accounts.get(i).getBalance(),"Withdrawal"));
 		}
 	}
 }
@@ -74,5 +74,8 @@ public static void main(String args[]) throws Exception {
 	{ 
 		System.out.println("Error in main - " + exc.toString()); 
 	} 
+}
+public static List<Transaction> getTransactions() {
+	return transactions;
 }
 }
