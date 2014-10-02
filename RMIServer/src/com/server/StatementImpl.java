@@ -3,9 +3,8 @@ package com.server;
 import java.util.Date;
 import java.util.List;
 
-import com.interf.Statement;
 
-public class BankStatement implements Statement {
+public class StatementImpl implements Statement {
 
 	private Account account;
 	private List<Transaction> transactions; // users accounts

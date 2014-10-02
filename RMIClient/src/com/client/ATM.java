@@ -2,10 +2,12 @@ package com.client;
 
 import java.rmi.Naming;
 
+import com.server.BankInterface;
+
 public class ATM {
 	public static void main (String args[]) throws Exception 
 	{
-		BankServer banks = (BankServer)Naming.lookup("//localhost/BankServer"); 
+		BankInterface banks = (BankInterface)Naming.lookup("//localhost/BankServer"); 
 				try 
 					{ 
 						
