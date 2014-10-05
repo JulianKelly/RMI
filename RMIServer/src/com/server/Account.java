@@ -1,11 +1,13 @@
 package com.server;
 
+import java.util.List;
+
 public class Account 
 {
 	private int accnum;
 	private int balance;
 	private String name;
-	
+	private List<Transaction> transactions;
 	public Account(int AccountN, int bal, String Nme)
 	{
 		accnum = AccountN;
@@ -29,5 +31,8 @@ public class Account
 	{
 		return name;
 	}
-
+	public List<Transaction> getTransaction()
+	{
+		return transactions;
+	}
 }
