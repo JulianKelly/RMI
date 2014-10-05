@@ -1,35 +1,17 @@
 package com.server;
 
-
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-
 public class StatementImpl implements Statement {
-
-	private Date StartDate;
-	private Date EndDate;
-	
-	// Create an instance of SimpleDateFormat used for formatting 
+	// Create an instance of SimpleDateFormat used for formatting
 	// the string representation of date (month/day/year)
-	DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");       
-	 // number of days to add
-	
-	String reportDate1 = df.format(StartDate);
-	String reportDate2 = df.format(EndDate);
+	DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
 	private static final long serialVersionUID = 1L;
-	private Account account;// users accounts
-	private List<Transaction> transactions;
-	private List<Transaction> neededforStatement;
-	
-	public int getAccountnum() {
-		return account.getAccnum();
-	}
-
-
+	private List<Account> accounts;// users accounts
+	private List<Transaction> currentTransactions;
 
 	public Date getStartDate() {
 		return null;
@@ -40,35 +22,51 @@ public class StatementImpl implements Statement {
 		return null;
 	}
 
-	public String getAccoutName() {
-		// TODO Auto-generated method stub
-		return account.getName();
+	
+
+	public List<Transaction> getTransations(int accnum, Date startDate,
+			Date finishDate) {
+		String firstDate = df.format(startDate);
+		String lastDate = df.format(finishDate);
+		int i;
+		for (i = 0; i < accounts.size(); i++) {
+			if (accounts.get(i).getAccnum() == accnum) {
+				for (int j = 0; j < accounts.get(i).getTransaction().size(); j++) {
+					if (accounts.get(i).getTransaction().get(j).getDate()
+							.toString().equals(firstDate)) {
+						currentTransactions.add(accounts.get(i)
+								.getTransaction().get(j));
+						int k = j + 1;
+						do {
+							currentTransactions.add(accounts.get(i)
+									.getTransaction().get(k));
+							k++;
+						} while (!accounts.get(i).getTransaction().get(k)
+								.getDate().toString().equals(lastDate));
+						break;
+					}
+				}
+
+			}
+
+		}
+		return currentTransactions;
 	}
 
-	public List<Transaction> getTransations() 
-	{
-		int i;
-		for(i = 0; i < transactions.size(); i++)
-		{
-		if(account.getAccnum() == transactions.get(i).getAccNum())
-		{
-			if(transactions.get(i).getDate().toString() == reportDate2)
-			{
-				return null;
-			}
-			if(transactions.get(i).getDate().toString() == reportDate1)
-			{
-			while(transactions.get(i).getDate().toString() != reportDate2)
-			
-				transactions = Bank.getTransactions();
-				Transaction a = new Transaction(transactions.get(i).getAccNum(), transactions.get(i).getDate(),transactions.get(i).returnBalance(), "Withdrawal");
-				neededforStatement.add(a);
-				i++;
-			}
-	
-		}
-		
-		}
-		return neededforStatement;
+
+
+	public List<Transaction> getTransations() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public int getAccountnum() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public String getAccoutName() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
