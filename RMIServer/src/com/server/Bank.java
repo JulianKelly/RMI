@@ -34,8 +34,9 @@ public class Bank extends UnicastRemoteObject implements BankInterface {
 //				getTransactions().add(
 //						new Transaction(accounts.get(i).getAccnum(), current,
 //								accounts.get(i).getBalance(), "Deposit"));
+				return "Successfully Deposited $"+amount+" to account "+account;
+
 			}
-			return "Successfully Deposited $"+amount+" to account "+account;
 
 		}
 		return "Deposit unsuccessful";
