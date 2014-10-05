@@ -49,9 +49,9 @@ public class Bank extends UnicastRemoteObject implements BankInterface {
 			if (accounts.get(i).getAccnum() == account) {
 				accounts.get(i).setBalance(amount*-1);
 				Date current = new Date();
-//				transactions.add(
-//						new Transaction(accounts.get(i).getAccnum(), current,
-//								accounts.get(i).getBalance(), "Withdrawal"));
+			//	transactions.add(
+			//			new Transaction(accounts.get(i).getAccnum(), current,
+			//					accounts.get(i).getBalance(), "Withdrawal"));
 				return "Successfully withdrew $"+amount+" from account "+account;
 			}
 			System.out.println(i);
@@ -77,10 +77,12 @@ public class Bank extends UnicastRemoteObject implements BankInterface {
 		Account a = new Account(1, 100, "Julian");
 		Account b = new Account(10, 100, "James");
 		Account c = new Account(100, 1000, "NgrFgt");
+		Account d = new Account(1000, 2000000, "Jack");
 
 		accounts.add(a);
 		accounts.add(b);
 		accounts.add(c);
+		accounts.add(d);
 		System.setProperty("java.security.policy","file:/C:/test.policy");
 		System.setProperty("java.rmi.server.hostname", "localhost");
 
@@ -88,8 +90,8 @@ public class Bank extends UnicastRemoteObject implements BankInterface {
 		// initialise Bank server - see sample code in the notes for details
 		try {
 			// First reset our Security manager
-			System.setSecurityManager(new RMISecurityManager()); //secure
-			System.out.println("Security manager set");
+			//System.setSecurityManager(new RMISecurityManager()); //secure
+			//System.out.println("Security manager set");
 
 			// Create an instance of the local object
 			BankInterface bankServer = new Bank();
