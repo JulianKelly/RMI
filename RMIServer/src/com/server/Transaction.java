@@ -17,6 +17,10 @@ public class Transaction
 		balance = TBalance;
 		TransType = TType;
 	}
+	public int getAccNum()
+	{
+		return accnum;
+	}
 
 	public String getTransType()
 	{
