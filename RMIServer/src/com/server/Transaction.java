@@ -1,37 +1,32 @@
 package com.server;
 
-
 import java.util.Date;
 
-public class Transaction 
-{
-	private Date DateOfTransaction;
+public class Transaction {
+	private Date dateOfTransaction;
 	private int balance;
-	private String TransType;
-	private int accnum;
-	
-	public Transaction(int accN, Date TDate, int TBalance, String TType)
-	{
-		accnum = accN;
-		DateOfTransaction = TDate;
-		balance = TBalance;
-		TransType = TType;
-	}
-	public int getAccNum()
-	{
-		return accnum;
+	private String transactionType;
+
+	public Transaction(Date dateOfTransaction, int balance,
+			String transactionType) {
+		this.dateOfTransaction = dateOfTransaction;
+		this.transactionType = transactionType;
+		this.balance = balance;
 	}
 
-	public String getTransType()
-	{
-		return TransType;
+	public String getTransactionType() {
+		return transactionType;
 	}
-	public Date getDate()
-	{
-		return DateOfTransaction;
+
+	public Date getDateOfTransaction() {
+		return dateOfTransaction;
 	}
-	public int returnBalance()
-	{
+
+	public void setDateOfTransaction(Date dateOfTransaction) {
+		this.dateOfTransaction = dateOfTransaction;
+	}
+
+	public int getBalance() {
 		return balance;
 	}
 }

@@ -8,65 +8,56 @@ import java.util.List;
 public class StatementImpl implements Statement {
 	// Create an instance of SimpleDateFormat used for formatting
 	// the string representation of date (month/day/year)
-	DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
-	private static final long serialVersionUID = 1L;
-	private List<Account> accounts;// users accounts
-	private List<Transaction> currentTransactions;
+	//private static final long serialVersionUID = 1L;
+	private Account account;// users accounts
+	private List<Transaction> transactions;
+	private Date startDate;
+	private Date endDate;
 
 	public Date getStartDate() {
-		return null;
+		return startDate;
 	}
 
 	public Date getEndDate() {
-		// TODO Auto-generated method stub
-		return null;
+		return endDate;
 	}
 
-	
-
-	public List<Transaction> getTransations(int accnum, Date startDate,
-			Date finishDate) {
+	public StatementImpl(Account account, Date startDate, Date finishDate) 
+	{
+		DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
 		String firstDate = df.format(startDate);
 		String lastDate = df.format(finishDate);
-		int i;
-		for (i = 0; i < accounts.size(); i++) {
-			if (accounts.get(i).getAccnum() == accnum) {
-				for (int j = 0; j < accounts.get(i).getTransaction().size(); j++) {
-					if (accounts.get(i).getTransaction().get(j).getDate()
-							.toString().equals(firstDate)) {
-						currentTransactions.add(accounts.get(i)
-								.getTransaction().get(j));
-						int k = j + 1;
-						do {
-							currentTransactions.add(accounts.get(i)
-									.getTransaction().get(k));
-							k++;
-						} while (!accounts.get(i).getTransaction().get(k)
-								.getDate().toString().equals(lastDate));
-						break;
-					}
-				}
-
+		for (int j = 0; j < account.getTransaction().size(); j++) 
+		{
+			if (account.getTransaction().get(j).getDateOfTransaction()
+					.toString().equals(firstDate)) 
+			{
+				transactions.add(account.getTransaction().get(j));
+				int k = j + 1;
+				do 
+				{
+					transactions.add(account.getTransaction().get(k));
+					k++;
+				} while (!account.getTransaction().get(k)
+						.getDateOfTransaction().toString().equals(lastDate));
+				break;
 			}
 
 		}
-		return currentTransactions;
+		this.account = account;
+		this.startDate = startDate;
+		this.endDate = finishDate;
 	}
 
-
-
 	public List<Transaction> getTransations() {
-		// TODO Auto-generated method stub
-		return null;
+		return transactions;
 	}
 
 	public int getAccountnum() {
-		// TODO Auto-generated method stub
-		return 0;
+		return account.getAccnum();
 	}
 
 	public String getAccoutName() {
-		// TODO Auto-generated method stub
-		return null;
+		return account.getName();
 	}
 }
