@@ -40,7 +40,7 @@ public class StatementImpl implements Statement {
 					transactions.add(account.getTransaction().get(k));
 					k++;
 				} while (!account.getTransaction().get(k)
-						.getDateOfTransaction().toString().equals(lastDate));
+						.getDateOfTransaction().toString().equals(lastDate)|| !account.getTransaction().isEmpty());
 				break;
 			}
 			

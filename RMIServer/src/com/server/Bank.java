@@ -28,12 +28,9 @@ public class Bank extends UnicastRemoteObject implements BankInterface {
 		for (int i = 0; i <accounts.size(); i++) {
 			if (accounts.get(i).getAccnum() == account) {
 				System.out.println("ma nigguh");
-
 				accounts.get(i).setBalance(amount);
 				Date current = new Date();
-//				getTransactions().add(
-//						new Transaction(accounts.get(i).getAccnum(), current,
-//								accounts.get(i).getBalance(), "Deposit"));
+				accounts.get(i).getTransaction().add(new Transaction(current, amount, "deposit"));
 				return "Successfully Deposited $"+amount+" to account "+account;
 
 			}
@@ -46,17 +43,16 @@ public class Bank extends UnicastRemoteObject implements BankInterface {
 	public String withdraw(int account, int amount) throws RemoteException {
 		for (int i = 0; i < accounts.size(); i++)
 		{
-			System.out.println("Current list: "+accounts.get(i).getAccnum()+", account being searched: "+account);
+			//System.out.println("Current list: "+accounts.get(i).getAccnum()+", account being searched: "+account);
 			if (accounts.get(i).getAccnum() == account) {
 				accounts.get(i).setBalance(amount*-1);
 				Date current = new Date();
-			//	transactions.add(
-			//			new Transaction(accounts.get(i).getAccnum(), current,
-			//					accounts.get(i).getBalance(), "Withdrawal"));
+				accounts.get(i).getTransaction().add(new Transaction(current, amount, "withdraw"));
 				return "Successfully withdrew $"+amount+" from account "+account;
 			}
 			System.out.println(i);
 		}
+		
 		return "Withdraw unsuccessful";
 	}
 
@@ -69,9 +65,16 @@ public class Bank extends UnicastRemoteObject implements BankInterface {
 		return "Account not found";
 	}
 
-	public StatementImpl getStatement(Account account, Date from, Date to)
+	public StatementImpl getStatement(int account, Date from, Date to)
 			throws RemoteException {
-		return new StatementImpl(account, from, to);
+		for (int i = 0; i < accounts.size(); i++)
+		{
+			if (accounts.get(i).getAccnum() == account)
+			{
+				return new StatementImpl(accounts.get(i), from, to);
+			}
+		}
+		return null;
 	}
 
 	public static void main(String args[]) throws Exception {
@@ -88,7 +91,6 @@ public class Bank extends UnicastRemoteObject implements BankInterface {
 		System.setProperty("java.rmi.server.hostname", "localhost");
 
 
-		// initialise Bank server - see sample code in the notes for details
 		try {
 			// First reset our Security manager
 			//System.setSecurityManager(new RMISecurityManager()); //secure
@@ -111,4 +113,5 @@ public class Bank extends UnicastRemoteObject implements BankInterface {
 	public static List<Transaction> getTransactions() {
 		return transactions;
 	}
+
 }

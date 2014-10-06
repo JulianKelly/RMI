@@ -1,6 +1,9 @@
 package com.client;
 
 import java.rmi.Naming;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import com.server.BankInterface;
 
@@ -37,9 +40,26 @@ public class ATM {
 					else if(args[0].equals("inquiry")){
 						System.out.println(banks.inquiry(Integer.parseInt(args[1])));
 					}
+					else if(args[0].equals("statement")){
+						try 
+						{ 
+							DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+							banks.getStatement(Integer.parseInt(args[1]), df.parse(args[2]), df.parse(args[3]));
+						} 	
+					catch (Exception e) {
+						System.out.println("something cocked up");
+					}
+				
+							
+						}
+					else if(args.length<2||args.length>4){
+						System.out.println("Sorry that is an invalid request");
+					}
+					else{
+						System.out.println("Sorry that is an invalid request");
 
 
-				}
+				}}}
 				 
-				 }
+				 
 
