@@ -9,5 +9,5 @@ public interface BankInterface extends Remote {
 public String deposit(int accountnum, int amount) throws RemoteException;
 public String withdraw(int accountnum, int amount) throws RemoteException;
 public String inquiry(int accountnum) throws RemoteException;
-public Statement getStatement(Date from, Date to) throws RemoteException;
+public Statement getStatement(Account account, Date from, Date to) throws RemoteException;
 }

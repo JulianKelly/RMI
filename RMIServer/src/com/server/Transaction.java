@@ -4,14 +4,13 @@ import java.util.Date;
 
 public class Transaction {
 	private Date dateOfTransaction;
-	private int balance;
+	private int amount;
 	private String transactionType;
 
-	public Transaction(Date dateOfTransaction, int balance,
-			String transactionType) {
+	public Transaction(Date dateOfTransaction, int amount, String transactionType) {
 		this.dateOfTransaction = dateOfTransaction;
 		this.transactionType = transactionType;
-		this.balance = balance;
+		this.amount = amount;
 	}
 
 	public String getTransactionType() {
@@ -26,7 +25,7 @@ public class Transaction {
 		this.dateOfTransaction = dateOfTransaction;
 	}
 
-	public int getBalance() {
-		return balance;
+	public int getAmount() {
+		return amount;
 	}
 }

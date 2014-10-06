@@ -5,10 +5,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+@SuppressWarnings("serial")
 public class StatementImpl implements Statement {
-	// Create an instance of SimpleDateFormat used for formatting
-	// the string representation of date (month/day/year)
-	//private static final long serialVersionUID = 1L;
 	private Account account;// users accounts
 	private List<Transaction> transactions;
 	private Date startDate;

@@ -69,9 +69,9 @@ public class Bank extends UnicastRemoteObject implements BankInterface {
 		return "Account not found";
 	}
 
-	public StatementImpl getStatement(Date from, Date to)
+	public StatementImpl getStatement(Account account, Date from, Date to)
 			throws RemoteException {
-		return new StatementImpl();
+		return new StatementImpl(account, from, to);
 	}
 
 	public static void main(String args[]) throws Exception {
