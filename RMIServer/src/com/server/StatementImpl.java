@@ -27,8 +27,11 @@ public class StatementImpl implements Statement {
 		String lastDate = df.format(finishDate);
 		for (int j = 0; j < account.getTransaction().size(); j++) 
 		{
-			if (account.getTransaction().get(j).getDateOfTransaction()
-					.toString().equals(firstDate)) 
+			if(account.getTransaction().get(j).getDateOfTransaction().toString().equals(firstDate)&&account.getTransaction().get(j).getDateOfTransaction().toString().equals(lastDate)){
+				transactions.add(account.getTransaction().get(j));
+				break;
+			}
+			if (account.getTransaction().get(j).getDateOfTransaction().toString().equals(firstDate)) 
 			{
 				transactions.add(account.getTransaction().get(j));
 				int k = j + 1;
@@ -40,6 +43,7 @@ public class StatementImpl implements Statement {
 						.getDateOfTransaction().toString().equals(lastDate));
 				break;
 			}
+			
 
 		}
 		this.account = account;
