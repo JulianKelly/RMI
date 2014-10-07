@@ -43,7 +43,7 @@ public class ATM {
 					else if(args[0].equals("statement")){
 						try 
 						{ 
-							DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+							DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 							banks.getStatement(Integer.parseInt(args[1]), df.parse(args[2]), df.parse(args[3]));
 						} 	
 					catch (Exception e) {

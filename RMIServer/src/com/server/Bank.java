@@ -6,6 +6,8 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -14,6 +16,7 @@ public class Bank extends UnicastRemoteObject implements BankInterface {
 	/**
 	 * 
 	 */
+	DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 	private static final long serialVersionUID = 1L;
 	private static List<Account> accounts=new ArrayList<Account>();
 ;// users
@@ -43,7 +46,6 @@ public class Bank extends UnicastRemoteObject implements BankInterface {
 	public String withdraw(int account, int amount) throws RemoteException {
 		for (int i = 0; i < accounts.size(); i++)
 		{
-			//System.out.println("Current list: "+accounts.get(i).getAccnum()+", account being searched: "+account);
 			if (accounts.get(i).getAccnum() == account) {
 				accounts.get(i).setBalance(amount*-1);
 				Date current = new Date();
@@ -93,7 +95,7 @@ public class Bank extends UnicastRemoteObject implements BankInterface {
 
 		try {
 			// First reset our Security manager
-			//System.setSecurityManager(new RMISecurityManager()); //secure
+			System.setSecurityManager(new RMISecurityManager()); //secure
 			//System.out.println("Security manager set");
 
 			// Create an instance of the local object

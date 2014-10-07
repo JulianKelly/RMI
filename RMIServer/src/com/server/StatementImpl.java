@@ -1,7 +1,5 @@
 package com.server;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -22,29 +20,12 @@ public class StatementImpl implements Statement {
 
 	public StatementImpl(Account account, Date startDate, Date finishDate) 
 	{
-		DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
-		String firstDate = df.format(startDate);
-		String lastDate = df.format(finishDate);
 		for (int j = 0; j < account.getTransaction().size(); j++) 
 		{
-			if(account.getTransaction().get(j).getDateOfTransaction().toString().equals(firstDate)&&account.getTransaction().get(j).getDateOfTransaction().toString().equals(lastDate)){
+			if(account.getTransaction().get(j).getDateOfTransaction().compareTo(startDate)>=0&&account.getTransaction().get(j).getDateOfTransaction().compareTo(finishDate)<=0){
 				transactions.add(account.getTransaction().get(j));
-				break;
+				
 			}
-			if (account.getTransaction().get(j).getDateOfTransaction().toString().equals(firstDate)) 
-			{
-				transactions.add(account.getTransaction().get(j));
-				int k = j + 1;
-				do 
-				{
-					transactions.add(account.getTransaction().get(k));
-					k++;
-				} while (!account.getTransaction().get(k)
-						.getDateOfTransaction().toString().equals(lastDate)|| !account.getTransaction().isEmpty());
-				break;
-			}
-			
-
 		}
 		this.account = account;
 		this.startDate = startDate;
