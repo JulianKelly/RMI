@@ -31,9 +31,8 @@ public class ATM {
 							banks.deposit(Integer.parseInt(args[1]), Integer.parseInt(args[2]));
 							System.out.println("Deposit Complete");
 							System.out.println("New Balance: "+banks.inquiry(Integer.parseInt(args[1])));
-
 						} 	
-					catch (Exception e) {
+					catch (Exception e){
 						System.out.println("something cocked up");
 					} 
 					}

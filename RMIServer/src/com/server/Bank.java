@@ -7,6 +7,7 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -28,10 +29,17 @@ public class Bank extends UnicastRemoteObject implements BankInterface {
 	public String deposit(int account, int amount) throws RemoteException {
 		for (int i = 0; i <accounts.size(); i++) {
 			if (accounts.get(i).getAccnum() == account) {
-				System.out.println("ma nigguh");
 				accounts.get(i).setBalance(amount);
 				Date current = new Date();
-				accounts.get(i).getTransaction().add(new Transaction(current, amount, "deposit"));
+				String date=df.format(current);
+				try {
+					current=df.parse(date);
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				Transaction t= new Transaction(current, amount, "deposit");
+				accounts.get(i).setTransaction(t);
 				return "Successfully Deposited $"+amount+" to account "+account;
 
 			}
@@ -47,11 +55,17 @@ public class Bank extends UnicastRemoteObject implements BankInterface {
 			if (accounts.get(i).getAccnum() == account) {
 				accounts.get(i).setBalance(amount*-1);
 				Date current = new Date();
-				Transaction t= new Transaction(current, amount, "withdraw");
+				String date=df.format(current);
+				try {
+					current=df.parse(date);
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				Transaction t= new Transaction(current, amount, "withdrawal");
 				accounts.get(i).setTransaction(t);
 				return "Successfully withdrew $"+amount+" from account "+account;
 			}
-			System.out.println(i);
 		}
 		
 		return "Withdraw unsuccessful";
@@ -79,10 +93,10 @@ public class Bank extends UnicastRemoteObject implements BankInterface {
 	}
 
 	public static void main(String args[]) throws Exception {
-		Account a = new Account(1, 100, "Julian");
-		Account b = new Account(10, 100, "James");
-		Account c = new Account(100, 1000, "NgrFgt");
-		Account d = new Account(1000, 2000000, "Jack");
+		Account a = new Account(1, 100, "Julian Kelly");
+		Account b = new Account(10, 100, "James McCarthy");
+		Account c = new Account(100, 1000, "Robert Johnson");
+		Account d = new Account(1000, 2000000, "Jack Grier");
 
 		accounts.add(a);
 		accounts.add(b);
@@ -93,13 +107,9 @@ public class Bank extends UnicastRemoteObject implements BankInterface {
 
 
 		try {
-			// First reset our Security manager
 			System.setSecurityManager(new RMISecurityManager()); //secure
-			//System.out.println("Security manager set");
-
-			// Create an instance of the local object
 			BankInterface bankServer = new Bank();
-			Registry registry = LocateRegistry.createRegistry(1099);
+			Registry registry = LocateRegistry.createRegistry(1099); // RMI Registry created 
 			registry.bind("Test RMI", bankServer);
 			System.out.println("Instance of Bankserver created");
 

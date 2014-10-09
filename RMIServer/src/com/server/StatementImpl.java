@@ -25,6 +25,7 @@ public class StatementImpl implements Statement {
 		{
 			if(account.getTransaction().get(j).getDateOfTransaction().compareTo(startDate)>=0&&account.getTransaction().get(j).getDateOfTransaction().compareTo(finishDate)<=0){
 				transactions.add(account.getTransaction().get(j));
+				System.out.println(account.getTransaction().get(j));
 				
 			}
 		}
@@ -47,7 +48,7 @@ public class StatementImpl implements Statement {
 	
 	public String toString(){
 		String toReturn;
-		toReturn= account.getName() +", Account Number: " + account.getAccnum()+"\nTransactions: ";
+		toReturn= account.getName() +", Account Number: " + account.getAccnum()+"\nTransactions: \n";
 		for(int i = 0; i<transactions.size();i++){
 			toReturn+=transactions.get(i).toString() +"\n";
 			
