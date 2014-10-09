@@ -1,8 +1,9 @@
 package com.server;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Transaction {
+public class Transaction implements Serializable {
 	private Date dateOfTransaction;
 	private int amount;
 	private String transactionType;
@@ -27,5 +28,9 @@ public class Transaction {
 
 	public int getAmount() {
 		return amount;
+	}
+	public String toString(){
+		String s= "Date: " +dateOfTransaction+ ", Amount: "+amount+", Type: "+transactionType;
+		return s;
 	}
 }

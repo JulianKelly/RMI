@@ -18,9 +18,7 @@ public class Bank extends UnicastRemoteObject implements BankInterface {
 	 */
 	DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 	private static final long serialVersionUID = 1L;
-	private static List<Account> accounts=new ArrayList<Account>();
-;// users
-																		// accounts
+	private static List<Account> accounts=new ArrayList<Account>();																	// accounts
 	private static List<Transaction> transactions;
 
 	public Bank() throws RemoteException {
@@ -49,7 +47,8 @@ public class Bank extends UnicastRemoteObject implements BankInterface {
 			if (accounts.get(i).getAccnum() == account) {
 				accounts.get(i).setBalance(amount*-1);
 				Date current = new Date();
-				accounts.get(i).getTransaction().add(new Transaction(current, amount, "withdraw"));
+				Transaction t= new Transaction(current, amount, "withdraw");
+				accounts.get(i).setTransaction(t);
 				return "Successfully withdrew $"+amount+" from account "+account;
 			}
 			System.out.println(i);

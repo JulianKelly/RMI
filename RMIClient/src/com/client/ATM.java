@@ -44,10 +44,10 @@ public class ATM {
 						try 
 						{ 
 							DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-							banks.getStatement(Integer.parseInt(args[1]), df.parse(args[2]), df.parse(args[3]));
+							System.out.println((banks.getStatement(Integer.parseInt(args[1]), df.parse(args[2]), df.parse(args[3]))).toString());
 						} 	
 					catch (Exception e) {
-						System.out.println("something cocked up");
+						e.printStackTrace();
 					}
 				
 							
