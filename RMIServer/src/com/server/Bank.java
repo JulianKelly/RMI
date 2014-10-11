@@ -109,7 +109,7 @@ public class Bank extends UnicastRemoteObject implements BankInterface {
 		try {
 			System.setSecurityManager(new RMISecurityManager()); //secure
 			BankInterface bankServer = new Bank();
-			Registry registry = LocateRegistry.createRegistry(1099); // RMI Registry created 
+			Registry registry = LocateRegistry.createRegistry(Integer.parseInt(args[0])); // RMI Registry created 
 			registry.bind("Test RMI", bankServer);
 			System.out.println("Instance of Bankserver created");
 
