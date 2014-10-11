@@ -17,7 +17,7 @@ public class ATM {
 					try 
 					{ 
 						System.out.println(banks.withdraw(Integer.parseInt(args[1]), Integer.parseInt(args[2])));
-						System.out.println("Withdraw Complete");
+						
 						System.out.println("New Balance: "+banks.inquiry(Integer.parseInt(args[1])));
 
 					} 	
@@ -29,7 +29,7 @@ public class ATM {
 						try 
 						{ 
 							banks.deposit(Integer.parseInt(args[1]), Integer.parseInt(args[2]));
-							System.out.println("Deposit Complete");
+						
 							System.out.println("New Balance: "+banks.inquiry(Integer.parseInt(args[1])));
 						} 	
 					catch (Exception e){
